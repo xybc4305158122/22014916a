@@ -18,18 +18,16 @@ namespace ConsoleAppProject.App01
         // method.
         public void Run()
         {
+            OutputHeading();
             InputMiles();
             CalculateMetres();
             OutputMetres();
-            OutputHeading();
             InputMiles();
             CalculateFeet();
-            OutputHeading();
             OutputFeet();
             InputFeets();
             CalculateMiles();
             OutputMiles();
-            OutputHeading();
             SelectInputUnit();
             CalculateDistance();
         }
@@ -87,7 +85,7 @@ namespace ConsoleAppProject.App01
         // The method for calculating feet into miles
         private double CalculateMiles()
         {
-            return miles = feet * 0.000189394;
+            return miles = feet /5280;
         }
 
         // The method will calculate the feet
@@ -108,7 +106,7 @@ namespace ConsoleAppProject.App01
         // The miles will be in the double data type.
         private void OutputMiles()
         {
-            Console.WriteLine(feet + "feet is  " + miles + "miles");
+            Console.WriteLine(feet + "feet is  " + Convert.ToDouble(miles) + "miles");
         }
 
         string choice1;
