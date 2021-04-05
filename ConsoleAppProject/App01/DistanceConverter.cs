@@ -7,7 +7,7 @@ namespace ConsoleAppProject.App01
     public class DistanceConverter
     {
         public const int FEET_IN_MILES = 5280;
-        public const double METRES_IN_MILES = 1609.34;
+        public const double METRES_IN_MILES = 1609.344;
         public const double FEET_IN_METRES = 3.28084;
         private double miles;
         private double feet;
@@ -20,21 +20,24 @@ namespace ConsoleAppProject.App01
         {
             OutputHeading();
             InputMiles();
-            CalculateMetres();
-            OutputMetres();
-            InputMiles();
             CalculateFeet();
             OutputFeet();
+            /*Console.WriteLine();
+            InputMiles();
+            CalculateMetres();
+            OutputMetres();
+            Console.WriteLine();
             InputFeets();
             CalculateMiles();
             OutputMiles();
+            Console.WriteLine();
             SelectInputUnit();
-            CalculateDistance();
+            CalculateDistance();*/
         }
         // The method to calculate miles into the metres.
        private void CalculateMetres()
         {
-            metres = miles * METRES_IN_MILES;
+            metres = metres * METRES_IN_MILES;
         }
         
         // A print method to output the display of miles into metres.
@@ -60,6 +63,7 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("Hi there enter the number of miles ");
             string value = Console.ReadLine();
             miles = Convert.ToDouble(value);
+
         }
 
         // My input distance method for choosing which type
@@ -206,7 +210,7 @@ namespace ConsoleAppProject.App01
             {
                 Console.WriteLine("\nConverting miles into metres\n");
                 InputDistance();
-                outputDistance = inputDistance * METRES_IN_MILES * 2;
+                outputDistance = inputDistance * METRES_IN_MILES;
                 Console.WriteLine(inputDistance + " miles = " + outputDistance + " metres");
             }
 
@@ -252,6 +256,5 @@ namespace ConsoleAppProject.App01
         }
 
     }  
-
-    }
+}
 
