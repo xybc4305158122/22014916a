@@ -3,7 +3,7 @@
 | ---- | ---- |
 **Name**: | Abdul Salam  |
 **Student ID**: | 22014916 |
-**Course:** | Cyber Security Honsc |
+**Course:** | Cyber Security Bsc |
 **Module**: | CO453     |
 **Started**: | January 2021 |    
 
