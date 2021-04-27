@@ -7,24 +7,30 @@ namespace ConsoleAppProject.App02
     /// Abdul Salam version 0.1
     public class BMI
     {
-        double weightImperial;
-        double heightImperial;
-        string unitChoice;
-        double heightInFeet;
-        double heightInInches;
-        double heightInMetres;
-        double weightInStones;
-        double weightInPounds;
-        double weightInKg;
-        double imperialBMI;
-        double metricBMI;
+        public const int InchesInFeet = 12;
+        public const int PoundsInStones = 14;
+        double weightImperial { get; set; }
+        double heightImperial { get; set; }
+        string unitChoice { get; set; }
+        double heightInFeet { get; set; }
+        double heightInInches { get; set; }
+        double heightInMetres { get; set; }
+        double weightInStones { get; set; }
+        double weightInPounds { get; set; }
+        double weightInKg { get; set; }
+        double imperialBMI { get; set; }
+        double metricBMI { get; set; }
 
+        public UnitSystems UnitSystems 
+        {
+            get => default;
+        }
 
         public void Run()
         {
             OutputHeading();
-            TypeOfUnit();
-            ethnicMessage();
+            DisplayTypeOfUnit();
+            PrintEthnicMessage();
         }
 
         private void OutputHeading()
@@ -34,12 +40,9 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("-------------------------------------------------");
         }
 
-
-        private void TypeOfUnit()
+        private void DisplayTypeOfUnit()
         {
-            Console.WriteLine(" 1. Metric Units ");
-            Console.WriteLine(" 2. Imperial Units ");
-            Console.Write(" Please enter your choice >");
+            Console.WriteLine("1. Metric Units\n2. Imperial Units\n Please enter your choice >");
             unitChoice = Console.ReadLine();
 
             if (unitChoice == "1")
@@ -51,19 +54,16 @@ namespace ConsoleAppProject.App02
                 Console.Write("Enter your weight in kg> ");
                 string kg = Console.ReadLine();
                 weightInKg = Convert.ToDouble(kg);
-                Console.WriteLine();
-                Console.WriteLine();
-                MetricFormula();
-                BMIConditions(metricBMI);
-         }
+                CalculateMetricFormula();
+                DisplayBMI(metricBMI);
+            }
 
             else if (unitChoice == "2")
             {
-                Console.WriteLine("Enter your height in the nearest feet and inches \n \n ");
+                Console.WriteLine("Enter your height in the nearest feet and inches \n ");
                 Console.Write("Enter your height in feet> ");
                 string height = Console.ReadLine();
                 heightInFeet = Convert.ToDouble(height);
-
 
                 Console.Write("Enter your height in inches> ");
                 string inches = Console.ReadLine();
@@ -78,73 +78,68 @@ namespace ConsoleAppProject.App02
                 string pounds = Console.ReadLine();
                 weightInPounds = Convert.ToDouble(pounds);
 
-                ImperialFormula();
-                BMIConditions(imperialBMI);
+                CalculateImperialFormula();
+                DisplayBMI(imperialBMI);
+            }
+            else
+            {
+                Console.WriteLine("Please select either 1 or 2 ");
             }
         }
-
-        private void ImperialFormula()
+       
+        public void CalculateImperialFormula()
         {
-           double Pounds = weightInStones * 14;
+            double Pounds = weightInStones * PoundsInStones;
             weightImperial = weightInPounds + Pounds;
 
-            double inches = heightInFeet * 12;
-            heightImperial = heightInInches+ inches;
+            double inches = heightInFeet * InchesInFeet;
+            heightImperial = heightInInches + inches;
 
             imperialBMI = (weightImperial * 703) / (heightImperial * heightImperial);
         }
-
-        private void MetricFormula()
+       
+        public void CalculateMetricFormula()
         {
             metricBMI = (weightInKg) / (heightInMetres * heightInMetres);
         }
 
-        private void BMIConditions(double BMI)
+        private void DisplayBMI(double BMI)
         {
             if (BMI < 18.5)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are undeweight");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are undeweight");
             }
 
             else if (BMI >= 18.5 && BMI <= 24.9)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are Normal");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are Normal" );
             }
 
             else if (BMI >= 25.0 && BMI <= 29.9)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are overweight");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are Overweight");
             }
 
             else if (BMI >= 30.0 && BMI <= 34.9)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are obese Class 1");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 1");
             }
 
             else if (BMI >= 35.0 && BMI <= 39.9)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are Obese Class 2");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 2");
             }
 
             else if (BMI >= 40.0)
             {
-                Console.WriteLine("Your BMI is " + BMI);
-                Console.WriteLine("You are Obese Class 3");
+                Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 3");
             }
         }
-
-        private void ethnicMessage()
+        private void PrintEthnicMessage()
         {
-            Console.WriteLine("If you are Black, Asian or minority \n ethnic groups, you have a risk");
-            Console.WriteLine("\n Adults 23.0 or more are at increased risk");
-            Console.WriteLine("Adults 27.5 or more at high risk");
+            Console.WriteLine("\nIf you are Black, Asian or minority ethnic groups, you have a risk");
+            Console.WriteLine("Adults 23.0 or more are at increased risk \nAdults 27.5 or more at high risk");
         }
-
     }
 }
     

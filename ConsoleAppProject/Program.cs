@@ -8,7 +8,6 @@ namespace ConsoleAppProject
     /// The main method in this class is called first
     /// when the application is started.  It will be used
     /// to start Apps 01 to 05 for CO453 CW1
-    /// 
     /// This Project has been modified by:
     /// Abdul Salam 14/12/2020
     /// </summary>
@@ -25,19 +24,10 @@ namespace ConsoleAppProject
             DistanceConverter converter = new DistanceConverter();
             converter.Run();
 
-            //DistanceConverter converter = new DistanceConverter();
-            //converter.Run();
+           /* App02.BMI calculator = new App02.BMI();
 
-            //App02.BMI calculator = new App02.BMI();
+            calculator.Run();*/
 
-            //calculator.Run();
-
-            Console.ReadLine();
-
-           
-            
-           
-           
         }
     }
 }

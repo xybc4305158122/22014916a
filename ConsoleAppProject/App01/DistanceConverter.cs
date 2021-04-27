@@ -7,11 +7,15 @@ namespace ConsoleAppProject.App01
     public class DistanceConverter
     {
         public const int FEET_IN_MILES = 5280;
-        public const double METRES_IN_MILES = 1609.344;
+        public const double METRES_IN_MILES = 1609.34;
         public const double FEET_IN_METRES = 3.28084;
-        private double miles;
-        private double feet;
-        private double metres;
+        public const string FEET = "Feet";
+        public const string METRES = "Metres";
+        public const string MILES = "Miles";
+        public string FromUnit { get; set; }
+        public string ToUnit { get; set; }
+        public double OutputDistance { get; set; }
+        public double InputDistance { get; set; }
 
         // This is a run method containing all the class methods
         // in a single method. I am calling my class methods in this 
@@ -19,33 +23,55 @@ namespace ConsoleAppProject.App01
         public void Run()
         {
             OutputHeading();
-            InputMiles();
-            CalculateFeet();
-            OutputFeet();
-            /*Console.WriteLine();
-            InputMiles();
-            CalculateMetres();
-            OutputMetres();
-            Console.WriteLine();
-            InputFeets();
-            CalculateMiles();
-            OutputMiles();
-            Console.WriteLine();
-            SelectInputUnit();
-            CalculateDistance();*/
+            Console.WriteLine("Select distance to convert from > ");
+            string input = InputChoices();
+            FromUnit = SelectChoice(input);
+            Console.WriteLine($"\nYou have selected {FromUnit}");
+            Console.WriteLine("\nSelect distance to convert into > ");
+            string input2 = InputChoices();
+            ToUnit = SelectChoice(input2);
+            Console.WriteLine($"\nYou have selected {ToUnit}");
+            Console.WriteLine($"\nConverting {FromUnit} to {ToUnit}");
+            Console.Write($"\nEnter distance in {FromUnit} > ");
+            InputDistance = InputData();
+            CalculateDistance(); 
         }
-        // The method to calculate miles into the metres.
-       private void CalculateMetres()
+
+        public double InputData()
         {
-            metres = metres * METRES_IN_MILES;
+            string data = Console.ReadLine();
+            return Convert.ToDouble(data);
         }
-        
-        // A print method to output the display of miles into metres.
-        private void OutputMetres()
+
+        public string SelectChoice(string input)
         {
-            Console.WriteLine(miles + "is equiavalent to " + metres + "metres");
+            if (input.Equals("1"))
+            {
+                return FEET;
+            }
+
+            else if (input.Equals("2"))
+            {
+                return METRES;
+            }
+
+            else if (input.Equals("3"))
+            {
+                return MILES;
+            }
+
+            Console.WriteLine("Invalid input. Select 1, 2 or 3");
+            return null; 
         }
-        
+
+        public string InputChoices()
+        {
+            Console.WriteLine($"\n1. {FEET}\n2. {METRES} \n3. {MILES} ");
+            Console.Write("\nPlease enter your choice > ");
+            string input = Console.ReadLine();
+            return input;
+        }
+
         //My heading output for the user.
         private void OutputHeading()
         {
@@ -55,206 +81,57 @@ namespace ConsoleAppProject.App01
             Console.WriteLine("----------------------------\n");
         }
 
-
-        // Prompt the user to enter the miles 
-        // The miles will be in the double data type.
-        private void InputMiles()
-        {
-            Console.WriteLine("Hi there enter the number of miles ");
-            string value = Console.ReadLine();
-            miles = Convert.ToDouble(value);
-
-        }
-
-        // My input distance method for choosing which type
-        // of unit to convert from.
-        double inputDistance=0; 
-        private void InputDistance()
-        {
-            Console.WriteLine("Enter distance ");
-            string value = Console.ReadLine();
-            inputDistance = Convert.ToDouble(value);
-           
-        }
-
-        // A method asking for the input as feet and storing it inside
-        // a string value. Then storing it in feet.
-        private void InputFeets()
-        {
-            Console.WriteLine("Hi there enter the number of feet ");
-            string value = Console.ReadLine();
-            feet = Convert.ToDouble(value);
-        }
-
-        // The method for calculating feet into miles
-        private double CalculateMiles()
-        {
-            return miles = feet /5280;
-        }
-
-        // The method will calculate the feet
-        // The miles will be in the double data type.
-        private double CalculateFeet()
-        {
-            return feet = miles * 5280;
-        }
-
-        // Print out the output in feet.
-        // The miles will be in the double data type.
-        private void OutputFeet()
-        {
-            Console.WriteLine(miles + "miles is " + feet + "feet");
-        }
-
-        // Print out the output in miles.
-        // The miles will be in the double data type.
-        private void OutputMiles()
-        {
-            Console.WriteLine(feet + "feet is  " + Convert.ToDouble(miles) + "miles");
-        }
-
-        string choice1;
-        // The input unit method determining which unit was selected then
-        // displaying an output dependant on your selection.
-        private void SelectInputUnit()
-        {
-            Console.WriteLine("Hi there please choose your desired unit to convert from");
-            Console.WriteLine("1. Metres" + "\n2. Miles\n" + "3. Feet");
-            choice1 = Console.ReadLine();
-            if (choice1 == "1")
-            {
-                Console.WriteLine("You have chosen Metres ");
-                SelectOutputUnit();
-            }
-
-            else if (choice1 == "2")
-            {
-                Console.WriteLine("You have chosen Miles");
-                SelectOutputUnit();
-            }
-
-            else if (choice1 == "3")
-            {
-                Console.WriteLine("You have chosen Feet");
-                SelectOutputUnit();
-            }
-
-            else
-            {
-                Console.WriteLine("Select 1 2 or 3");
-            }
-
-        }
-
-        string choice2;
-        // The output unit method determining which unit was selected then
-        // displaying an output dependant on your selection.
-        private void SelectOutputUnit()
-        {
-            Console.WriteLine("\nSelect a distance to convert into\n");
-            Console.WriteLine("1. Metres" + "\n2. Miles\n" + "3. Feet");
-            Console.WriteLine("Please enter your choice ");
-            choice2 = Console.ReadLine();
-            if (choice2 == "1")
-            {
-                Console.WriteLine("You have chosen Metres ");
-            }
-
-            else if (choice2 == "2")
-            {
-                Console.WriteLine("You have chosen Miles");
-            }
-
-            else if (choice2 == "3")
-            {
-                Console.WriteLine("You have chosen Feet");
-            }
-
-            else
-            {
-                Console.WriteLine("Select 1 2 or 3");
-            }
-        }
-
-        double outputDistance=0;
-
         // The method to calculate the distance of the users 
         // two selected units.
-        private void CalculateDistance()
-        {
-            if (choice1=="1" && choice2 == "1")
+        public void CalculateDistance()
+        { 
+            if (FromUnit==METRES && ToUnit == METRES)
             {
-                Console.WriteLine("\nConverting metres into metres\n");
-                InputDistance();
-                outputDistance = inputDistance;
-                Console.WriteLine(inputDistance + " metres = " + outputDistance + " metres");
+                OutputDistance = InputDistance;
             }
 
-           else if (choice1=="1" && choice2 =="2")
+           else if (FromUnit==METRES && ToUnit ==MILES)
+           { 
+                OutputDistance = InputDistance / METRES_IN_MILES;
+           }
+
+            else if (FromUnit == METRES && ToUnit == FEET)
             {
-                Console.WriteLine("\nConverting metres into miles\n");
-                InputDistance();
-                outputDistance = inputDistance / METRES_IN_MILES;
-                Console.WriteLine(inputDistance + " metres = " + outputDistance + " miles");
+                OutputDistance = InputDistance * FEET_IN_METRES ;
             }
 
-            else if (choice1 == "1" && choice2 == "3")
+            else if (FromUnit == MILES && ToUnit == METRES)
             {
-                Console.WriteLine("\nConverting metres into feet\n");
-                InputDistance();
-                outputDistance = inputDistance * FEET_IN_METRES ;
-                Console.WriteLine(inputDistance + " metres = " + outputDistance + " feet");
+                OutputDistance = InputDistance * METRES_IN_MILES;
             }
 
-            else if (choice1 == "2" && choice2 == "1")
-            {
-                Console.WriteLine("\nConverting miles into metres\n");
-                InputDistance();
-                outputDistance = inputDistance * METRES_IN_MILES;
-                Console.WriteLine(inputDistance + " miles = " + outputDistance + " metres");
+            else if (FromUnit == MILES && ToUnit == MILES)
+            { 
+                OutputDistance = InputDistance;
             }
 
-            else if (choice1 == "2" && choice2 == "2")
+            else if (FromUnit == MILES && ToUnit == FEET)
             {
-                Console.WriteLine("\nConverting miles into miles\n");
-                InputDistance();
-                outputDistance = inputDistance;
-                Console.WriteLine(inputDistance + " miles = " + outputDistance + " miles");
+               OutputDistance = InputDistance * FEET_IN_MILES;
             }
 
-            else if (choice1 == "2" && choice2 == "3")
-            {
-                Console.WriteLine("\nConverting miles into feet\n");
-                InputDistance();
-                outputDistance = inputDistance * 5280;
-                Console.WriteLine(inputDistance + " miles = " + outputDistance + " feet");
+            else if (FromUnit == FEET && ToUnit == METRES)
+            { 
+                OutputDistance = InputDistance / FEET_IN_METRES;
             }
 
-            else if (choice1 == "3" && choice2 == "1")
+            else if (FromUnit == FEET && ToUnit == MILES)
             {
-                Console.WriteLine("\nConverting feet into metres\n");
-                InputDistance();
-                outputDistance = inputDistance / FEET_IN_METRES;
-                Console.WriteLine(inputDistance + " feet = " + outputDistance + " metres");
+                OutputDistance = InputDistance / FEET_IN_MILES;
             }
 
-            else if (choice1 == "3" && choice2 == "2")
+            else if (FromUnit == FEET && ToUnit == FEET)
             {
-                Console.WriteLine("\nConverting feet into miles\n");
-                InputDistance();
-                outputDistance = inputDistance / 5280;
-                Console.WriteLine(inputDistance + " feet = " + outputDistance + " miles");
+                OutputDistance = InputDistance;
             }
 
-            else if (choice1 == "3" && choice2 == "3")
-            {
-                Console.WriteLine("\nConverting feet into feet\n");
-                InputDistance();
-                outputDistance = inputDistance;
-                Console.WriteLine(inputDistance + " feet = " + outputDistance + " feet ");
-            }
+            Console.WriteLine($"\n{InputDistance} {FromUnit} = {OutputDistance} {ToUnit}");
         }
-
     }  
 }
 
