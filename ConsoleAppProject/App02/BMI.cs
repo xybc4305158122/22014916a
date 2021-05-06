@@ -7,6 +7,7 @@ namespace ConsoleAppProject.App02
     /// Abdul Salam version 0.1
     public class BMI
     {
+        //The global variables of my class.
         public const int InchesInFeet = 12;
         public const int PoundsInStones = 14;
         double weightImperial { get; set; }
@@ -26,6 +27,7 @@ namespace ConsoleAppProject.App02
             get => default;
         }
 
+        // The Run method which i will call in the main class containing some of my class methods 
         public void Run()
         {
             OutputHeading();
@@ -33,6 +35,7 @@ namespace ConsoleAppProject.App02
             PrintEthnicMessage();
         }
 
+        // A method to print out the Heading to the user
         private void OutputHeading()
         {
             Console.WriteLine("-------------------------------------------------");
@@ -40,6 +43,8 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("-------------------------------------------------");
         }
 
+        // My display unit method which displays the type of unit the user wants to pick 
+        //Then there is an if statement 
         private void DisplayTypeOfUnit()
         {
             Console.WriteLine("1. Metric Units\n2. Imperial Units\n Please enter your choice >");
@@ -87,6 +92,7 @@ namespace ConsoleAppProject.App02
             }
         }
        
+        //Creating a formula for Imperial BMI
         public void CalculateImperialFormula()
         {
             double Pounds = weightInStones * PoundsInStones;
@@ -98,6 +104,7 @@ namespace ConsoleAppProject.App02
             imperialBMI = (weightImperial * 703) / (heightImperial * heightImperial);
         }
        
+        // Creating the formula for Metric BMI
         public void CalculateMetricFormula()
         {
             metricBMI = (weightInKg) / (heightInMetres * heightInMetres);
@@ -135,6 +142,8 @@ namespace ConsoleAppProject.App02
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 3");
             }
         }
+
+        //Method to print a certain message for the user
         private void PrintEthnicMessage()
         {
             Console.WriteLine("\nIf you are Black, Asian or minority ethnic groups, you have a risk");
