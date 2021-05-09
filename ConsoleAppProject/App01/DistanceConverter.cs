@@ -8,6 +8,7 @@ namespace ConsoleAppProject.App01
     /// <AbdulSalam>
     public class DistanceConverter
     {
+        //My gloabal variables
         public const int FEET_IN_MILES = 5280;
         public const double METRES_IN_MILES = 1609.34;
         public const double FEET_IN_METRES = 3.28084;
