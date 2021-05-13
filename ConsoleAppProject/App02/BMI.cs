@@ -10,6 +10,12 @@ namespace ConsoleAppProject.App02
         //The global variables of my class.
         public const int InchesInFeet = 12;
         public const int PoundsInStones = 14;
+        public const double UNDERWEIGHT = 18.5;
+        public const double NORMAL = 24.9;
+        public const double OVERWEIGHT = 29.9;
+        public const double OBESE = 34.9;
+        public const double OBESE2 = 39.9;
+        public const double OBESE3 = 40.0;
         double weightImperial { get; set; }
         double heightImperial { get; set; }
         string unitChoice { get; set; }
@@ -112,27 +118,27 @@ namespace ConsoleAppProject.App02
 
         private void DisplayBMI(double BMI)
         {
-            if (BMI < 18.5)
+            if (BMI < UNDERWEIGHT)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are undeweight");
             }
 
-            else if (BMI >= 18.5 && BMI <= 24.9)
+            else if (BMI <= NORMAL)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Normal" );
             }
 
-            else if (BMI >= 25.0 && BMI <= 29.9)
+            else if (BMI  <= OVERWEIGHT)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Overweight");
             }
 
-            else if (BMI >= 30.0 && BMI <= 34.9)
+            else if (BMI <= OBESE)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 1");
             }
 
-            else if (BMI >= 35.0 && BMI <= 39.9)
+            else if (BMI <= OBESE3)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 2");
             }
