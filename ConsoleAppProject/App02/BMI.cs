@@ -7,7 +7,9 @@ namespace ConsoleAppProject.App02
     /// Abdul Salam version 0.1
     public class BMI
     {
-        //The global variables of my class.
+        /// <summary>
+        /// These are my global variables of my class.
+        /// </summary>
         public const int InchesInFeet = 12;
         public const int PoundsInStones = 14;
         public const double UNDERWEIGHT = 18.5;
@@ -33,7 +35,9 @@ namespace ConsoleAppProject.App02
             get => default;
         }
 
-        // The Run method which i will call in the main class containing some of my class methods 
+        /// <summary>
+        /// The Run method which i will call in the main class containing some of my class methods 
+        /// </summary>
         public void Run()
         {
             OutputHeading();
@@ -41,7 +45,9 @@ namespace ConsoleAppProject.App02
             PrintEthnicMessage();
         }
 
-        // A method to print out the Heading to the user
+        /// <summary>
+        /// A method to print out the Heading to the user
+        /// </summary>
         private void OutputHeading()
         {
             Console.WriteLine("-------------------------------------------------");
@@ -49,8 +55,11 @@ namespace ConsoleAppProject.App02
             Console.WriteLine("-------------------------------------------------");
         }
 
-        // My display unit method which displays the type of unit the user wants to pick 
-        //Then there is an if statement 
+        /// <summary>
+        /// The display unit method which gives an option of metric or 
+        /// imperial unit then depending on the response of the user it 
+        /// either executes the metric (1) or imperial (2)
+        /// </summary>
         private void DisplayTypeOfUnit()
         {
             Console.WriteLine("1. Metric Units\n2. Imperial Units\n Please enter your choice >");
@@ -68,7 +77,6 @@ namespace ConsoleAppProject.App02
                 CalculateMetricFormula();
                 DisplayBMI(metricBMI);
             }
-
             else if (unitChoice == "2")
             {
                 Console.WriteLine("Enter your height in the nearest feet and inches \n ");
@@ -98,7 +106,10 @@ namespace ConsoleAppProject.App02
             }
         }
        
-        //Creating a formula for Imperial BMI
+        /// <summary>
+        /// This method is a formula for imperial units. It calculates
+        /// the imperial BMI of the user aswell.
+        /// </summary>
         public void CalculateImperialFormula()
         {
             double Pounds = weightInStones * PoundsInStones;
@@ -110,46 +121,51 @@ namespace ConsoleAppProject.App02
             imperialBMI = (weightImperial * 703) / (heightImperial * heightImperial);
         }
        
-        // Creating the formula for Metric BMI
+        /// <summary>
+        /// A method to calculate the BMI for the metric choice
+        /// </summary>
         public void CalculateMetricFormula()
         {
             metricBMI = (weightInKg) / (heightInMetres * heightInMetres);
         }
 
+        /// <summary>
+        /// This is a method to calculate the users BAME Class 
+        /// depending on the results they had gotten from their BMI
+        /// </summary>
+        /// <param name="BMI"></param>
         private void DisplayBMI(double BMI)
         {
             if (BMI < UNDERWEIGHT)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are undeweight");
             }
-
             else if (BMI <= NORMAL)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Normal" );
             }
-
             else if (BMI  <= OVERWEIGHT)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Overweight");
             }
-
             else if (BMI <= OBESE)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 1");
             }
-
             else if (BMI <= OBESE2)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 2");
             }
-
             else if (BMI >= OBESE3)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 3");
             }
         }
 
-        //Method to print a certain message for the user
+        /// <summary>
+        /// A simple display of a message to the user about Ethnicity
+        /// playing a role in the BMI.
+        /// </summary>
         private void PrintEthnicMessage()
         {
             Console.WriteLine("\nIf you are Black, Asian or minority ethnic groups, you have a risk");
