@@ -22,12 +22,12 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-           /* DistanceConverter converter = new DistanceConverter();
+            DistanceConverter converter = new DistanceConverter();
             converter.Run();*/
 
-            BMI calculator = new App02.BMI();
+           /* BMI calculator = new App02.BMI();
 
-            calculator.Run();
+            calculator.Run();*/
 
         }
     }

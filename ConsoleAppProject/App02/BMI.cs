@@ -138,12 +138,12 @@ namespace ConsoleAppProject.App02
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 1");
             }
 
-            else if (BMI <= OBESE2)
+            else if (BMI <= OBESE3)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 2");
             }
 
-            else if (BMI >= OBESE3)
+            else if (BMI >= 40.0)
             {
                 Console.WriteLine("\nYour BMI is " + BMI + "\n You are Obese Class 3");
             }
