@@ -9,32 +9,56 @@ namespace ConsoleAppProject.App03
 {
     public class StudentMarks
     {
-        public string [] Students;
-        public int[] Marks;
-
+        /// <summary>
+        /// My constant variables (Magic Numbers)
+        /// </summary>
         public const int FIRSTCLASS = 70;
         public const int UPPERSECONDCLASS = 60;
         public const int LOWERSECONDCLASS = 50;
         public const int THIRDCLASS = 40;
-        public const int FAIL = 0; 
-       
+        public const int FAIL = 0;
+
         /// <summary>
-        /// 
+        /// My global array variables.
+        /// </summary>
+        public string[] Students;
+        public int[] Marks;
+        public Grades[] Grade;
+
+        /// <summary>
+        /// The run method consisting of methods and outputs.
         /// </summary>
         public void Run()
         {
+            string restart;
             ConsoleHelper.OutputHeading("Student Marks");
 
-            InputMarks();
-            DisplayStudentData();
-            CalculateMinMaxAndMean();
+            do
+            {
+                InputMarks();
+                DisplayStudentData();
+                CalculateMinMaxAndMean();
+                CalculateGradeProfile();
+
+                Console.WriteLine("Would you like to restart the program: Yes/No");
+                restart = Console.ReadLine().ToLower();
+            }
+            while (restart == "yes");
+            {
+                Console.WriteLine("Thank You for using the Student Marks :");
+            }
         }
+
+
         
+        /// <summary>
+        /// This method takes in marks inserted by the user for each of 
+        /// the following students in the array.
+        /// </summary>
         public void InputMarks()
         {
             int mark=0;
             
-            Marks = new int[10] ;
             Students = new string[] 
             {
                 "John Smith", "John Doe", "Kian Roz", "Yousef Abdullah",
@@ -42,7 +66,10 @@ namespace ConsoleAppProject.App03
                 "Tony Stark", "Thor Odinson"
             };
 
-            for (int i = 0; i<Students.Length; i++)
+            Marks = new int[Students.Length];
+            Grade = new Grades[Students.Length];
+
+            for (int i = 0; i<Marks.Length; i++)
             {
                 mark = (int)ConsoleHelper.InputNumber(
                     "Please enter a mark for the student " + Students[i] + " > ", 0,100);
@@ -53,6 +80,11 @@ namespace ConsoleAppProject.App03
             Console.WriteLine("\nYou have successfully added a mark for all the current students \n");
         }
 
+        /// <summary>
+        /// This method calculates the grades of the 
+        /// </summary>
+        /// <param name="Marks"></param>
+        /// <returns></returns>
         public Grades CalculateGrade(int Marks)
         {
            if (Marks >= FAIL && Marks <THIRDCLASS)
@@ -77,6 +109,10 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        /// <summary>
+        /// My display method that will show the student data 
+        /// (names & marks)
+        /// </summary>
         public void DisplayStudentData()
         {
             for (int i = 0; i < Students.Length; i++)
@@ -86,6 +122,10 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        /// <summary>
+        /// The method to calculate the mean of the
+        /// total marks.
+        /// </summary>
         public void CalculateMinMaxAndMean()
         {
             int min = Marks[0];
@@ -113,5 +153,69 @@ namespace ConsoleAppProject.App03
                 "\nThe maximum marks are " + max + "\nThe mean marks are "+ mean/numCount);
         }
 
+        /// <summary>
+        /// This method shows the GradeProfile of the
+        /// students.
+        /// </summary>
+        public void CalculateGradeProfile()
+        {
+            int counterA = 0, counterB = 0, counterC = 0, counterD = 0, counterF = 0;
+
+            ConsoleHelper.OutputTitle("Grade Profile");
+
+            for (int i =0; i<Grade.Length; i++)
+            {
+                Grade[i] = CalculateGrade(Marks[i]);
+            }
+
+            for (int i = 0; i<Grade.Length; i++)
+            {
+                if (Grade[i] == Grades.A)
+                {
+                    counterA++;
+                }
+
+                if (Grade[i] == Grades.B)
+                {
+                    counterB++;
+                }
+
+                if (Grade[i] == Grades.C)
+                {
+                    counterC++;
+                }
+
+                if (Grade[i] == Grades.D)
+                {
+                    counterD++;
+                }
+
+                if (Grade[i] == Grades.F)
+                {
+                    counterF++;
+                }
+            }
+            DisplayPercentage("A", counterA);
+            DisplayPercentage("B", counterB);
+            DisplayPercentage("C", counterC);
+            DisplayPercentage("D", counterD);
+            DisplayPercentage("F", counterF);
+        }
+
+        /// <summary>
+        /// The method calculates the percentage of the marks people were given
+        /// based on the grade counter.
+        /// </summary>
+        /// <param name="GradeCounter"></param>
+        /// <returns></returns>
+        public double CalculatePercentage(int GradeCounter)
+        {
+            return (GradeCounter * 100) / (Students.Length);
+        }
+
+        public void DisplayPercentage(string grade, int GradeCounter)
+        {
+            Console.WriteLine($"The percentage of students with grade {grade} : > " + CalculatePercentage(GradeCounter) + "%"); ;
+        }
     }
 }

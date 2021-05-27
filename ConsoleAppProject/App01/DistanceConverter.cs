@@ -2,10 +2,12 @@
 
 namespace ConsoleAppProject.App01
 {
+    /// <summary>
     /// This app is a distance converter which is converts a selected distance of certain unit to the other.
     /// The units that the user can chose from are Feets, Metres and miles to do their conversions from one 
     /// to the other.
     /// <AbdulSalam>
+    /// </summary>
     public class DistanceConverter
     {
         /// <summary>
@@ -17,6 +19,10 @@ namespace ConsoleAppProject.App01
         public const string FEET = "Feet";
         public const string METRES = "Metres";
         public const string MILES = "Miles";
+
+        /// <summary>
+        /// Global variables
+        /// </summary>
         public string FromUnit { get; set; }
         public string ToUnit { get; set; }
         public double OutputDistance { get; set; }
@@ -27,24 +33,38 @@ namespace ConsoleAppProject.App01
         /// I am calling my class methods in this method and adding some Console.WriteLine 
         /// code so the datais outputted for the user to see.
         /// Furthermore I have storedsome methods inside some variables.
+        /// I have added a do while to restart the program if the user wants.
         /// </summary>
-
         public void Run()
         {
-            
-            Console.WriteLine("Select distance to convert from > ");
-            string input = InputChoices();
-            FromUnit = SelectChoice(input);
-            Console.WriteLine($"\nYou have selected {FromUnit}");
+            string restart;
 
-            Console.WriteLine("\nSelect distance to convert into > ");
-            string input2 = InputChoices();
-            ToUnit = SelectChoice(input2);
-            Console.WriteLine($"\nYou have selected {ToUnit}");
-            Console.WriteLine($"\nConverting {FromUnit} to {ToUnit}");
-            Console.Write($"\nEnter distance in {FromUnit} > ");
-            InputDistance = InputData();
-            CalculateDistance(); 
+            do
+            {
+                ConsoleHelper.OutputHeading("Distance Converter");
+
+                Console.WriteLine("Select distance to convert from > ");
+                string input = InputChoices();
+                FromUnit = SelectChoice(input);
+                Console.WriteLine($"\nYou have selected {FromUnit}");
+
+                Console.WriteLine("\nSelect distance to convert into > ");
+                string input2 = InputChoices();
+                ToUnit = SelectChoice(input2);
+                Console.WriteLine($"\nYou have selected {ToUnit}");
+                Console.WriteLine($"\nConverting {FromUnit} to {ToUnit}");
+                Console.Write($"\nEnter distance in {FromUnit} > ");
+
+                InputDistance = InputData();
+                CalculateDistance();
+
+                Console.WriteLine("Would you like to restart the program: Yes/No");
+                restart = Console.ReadLine().ToLower();
+            }
+            while (restart == "yes");
+            {
+                Console.WriteLine("Thank you for using the Distance Converter");
+            }
         }
 
         /// <summary>
@@ -52,7 +72,7 @@ namespace ConsoleAppProject.App01
         /// then it is converting the string variable to a double and returning it.
         /// </summary>
         /// <returns></returns>
-        public double InputData()
+        public double InputData() 
         {
             string data = Console.ReadLine();
             return Convert.ToDouble(data);
@@ -83,8 +103,11 @@ namespace ConsoleAppProject.App01
             return null; 
         }
 
-        // This method is printing out the choices the user can pick
-        // storing the choice in a variable and then returning it.
+        /// <summary>
+        /// This method is printing out the choices the user can pick
+        /// storing the choice in a variable and then returning it.
+        /// </summary>
+        /// <returns></returns>
         public string InputChoices()
         {
             Console.WriteLine($"\n1. {FEET}\n2. {METRES} \n3. {MILES} ");
@@ -96,44 +119,52 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// The method to calculate the distance of the users  two selected units.
         /// </summary>
-
         public void CalculateDistance()
         {
             if (FromUnit == METRES && ToUnit == METRES)
             {
                 OutputDistance = InputDistance;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == METRES && ToUnit == MILES)
             {
                 OutputDistance = InputDistance / METRES_IN_MILES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == METRES && ToUnit == FEET)
             {
                 OutputDistance = InputDistance * FEET_IN_METRES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == MILES && ToUnit == METRES)
             {
                 OutputDistance = InputDistance * METRES_IN_MILES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == MILES && ToUnit == MILES)
             {
                 OutputDistance = InputDistance;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == MILES && ToUnit == FEET)
             {
-                OutputDistance = InputDistance * FEET_IN_MILES;
+               OutputDistance = InputDistance * FEET_IN_MILES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == FEET && ToUnit == METRES)
             {
                 OutputDistance = InputDistance / FEET_IN_METRES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == FEET && ToUnit == MILES)
             {
                 OutputDistance = InputDistance / FEET_IN_MILES;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             else if (FromUnit == FEET && ToUnit == FEET)
             {
                 OutputDistance = InputDistance;
+                OutputDistance = System.Math.Round(OutputDistance, 2);
             }
             Console.WriteLine($"\n{InputDistance} {FromUnit} = {OutputDistance} {ToUnit}");
         }

@@ -150,5 +150,21 @@ namespace ConsoleAppProject
             Console.WriteLine("\n");
             Console.ResetColor();
         }
+
+        public static int CheckCharacters(string input)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] >= 'a' && input[i] <= 'z')
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
     }
 }

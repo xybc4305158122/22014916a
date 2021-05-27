@@ -8,7 +8,7 @@ namespace ConsoleAppProject.App02
     public class BMI
     {
         /// <summary>
-        /// These are my global variables of my class.
+        /// These are my constant global variables of my class.
         /// </summary>
         public const int InchesInFeet = 12;
         public const int PoundsInStones = 14;
@@ -18,17 +18,21 @@ namespace ConsoleAppProject.App02
         public const double OBESE = 34.9;
         public const double OBESE2 = 39.9;
         public const double OBESE3 = 40.0;
-        double weightImperial { get; set; }
-        double heightImperial { get; set; }
-        string unitChoice { get; set; }
-        double heightInFeet { get; set; }
-        double heightInInches { get; set; }
-        double heightInMetres { get; set; }
-        double weightInStones { get; set; }
-        double weightInPounds { get; set; }
-        double weightInKg { get; set; }
-        double imperialBMI { get; set; }
-        double metricBMI { get; set; }
+
+        /// <summary>
+        /// My global variables for my class.
+        /// </summary>
+       public double weightImperial { get; set; }
+       public double heightImperial { get; set; }
+       public string unitChoice { get; set; }
+       public double heightInFeet { get; set; }
+       public double heightInInches { get; set; }
+       public double heightInMetres { get; set; }
+       public double weightInStones { get; set; }
+       public double weightInPounds { get; set; }
+       public double weightInKg { get; set; }
+       public double imperialBMI { get; set; }
+       public double metricBMI { get; set; }
 
         public UnitSystems UnitSystems 
         {
@@ -36,23 +40,26 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// The Run method which i will call in the main class containing some of my class methods 
+        /// The Run method which i will call in the main class containing some of my class methods.
+        /// There is also a do while loop feature if the user wants to restart.
         /// </summary>
         public void Run()
         {
-            OutputHeading();
-            DisplayTypeOfUnit();
-            PrintEthnicMessage();
-        }
+            string restart;
 
-        /// <summary>
-        /// A method to print out the Heading to the user
-        /// </summary>
-        private void OutputHeading()
-        {
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("        Body Mass Index Calculator" + "\n             by Abdul Salam\n");
-            Console.WriteLine("-------------------------------------------------");
+            do
+            {
+                ConsoleHelper.OutputHeading("BMI Calculator");
+                DisplayTypeOfUnit();
+                PrintEthnicMessage();
+
+                Console.WriteLine("Would you like to restart the program: Yes/No");
+                restart = Console.ReadLine().ToLower();
+            }
+            while (restart =="yes");
+            {
+                Console.WriteLine("\nThank You for using the BMI calculator");
+            }
         }
 
         /// <summary>
@@ -60,7 +67,7 @@ namespace ConsoleAppProject.App02
         /// imperial unit then depending on the response of the user it 
         /// either executes the metric (1) or imperial (2)
         /// </summary>
-        private void DisplayTypeOfUnit()
+        public void DisplayTypeOfUnit()
         {
             Console.WriteLine("1. Metric Units\n2. Imperial Units\n Please enter your choice >");
             unitChoice = Console.ReadLine();
@@ -71,9 +78,12 @@ namespace ConsoleAppProject.App02
                 Console.Write("Enter your height in metres> ");
                 string height = Console.ReadLine();
                 heightInMetres = Convert.ToDouble(height);
+                AssertLowOrHigh();
+
                 Console.Write("Enter your weight in kg> ");
                 string kg = Console.ReadLine();
                 weightInKg = Convert.ToDouble(kg);
+                AssertLowOrHigh();
                 CalculateMetricFormula();
                 DisplayBMI(metricBMI);
             }
@@ -83,19 +93,23 @@ namespace ConsoleAppProject.App02
                 Console.Write("Enter your height in feet> ");
                 string height = Console.ReadLine();
                 heightInFeet = Convert.ToDouble(height);
+                AssertLowOrHigh();
 
                 Console.Write("Enter your height in inches> ");
                 string inches = Console.ReadLine();
                 heightInInches = Convert.ToDouble(inches);
+                AssertLowOrHigh(); 
 
                 Console.WriteLine("\n Enter your weight to the nearest stones and pounds ");
                 Console.Write("Enter your weight in stones> ");
                 string stones = Console.ReadLine();
                 weightInStones = Convert.ToDouble(stones);
+                AssertLowOrHigh();
 
                 Console.Write("Enter your weight in pounds> ");
                 string pounds = Console.ReadLine();
                 weightInPounds = Convert.ToDouble(pounds);
+                AssertLowOrHigh();
 
                 CalculateImperialFormula();
                 DisplayBMI(imperialBMI);
@@ -134,7 +148,7 @@ namespace ConsoleAppProject.App02
         /// depending on the results they had gotten from their BMI
         /// </summary>
         /// <param name="BMI"></param>
-        private void DisplayBMI(double BMI)
+        public void DisplayBMI(double BMI)
         {
             if (BMI < UNDERWEIGHT)
             {
@@ -163,10 +177,38 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
+        /// This method is for if the user inputs a units value that seems highly unlikely
+        /// for a human to have.
+        /// </summary>
+        public void AssertLowOrHigh()
+        {
+            if (heightInMetres <= 1.0 || heightInMetres >= 10)
+            {
+                Console.WriteLine("This height is too small or too high for this calculator");
+            }
+            else if (weightInKg <= 20 || weightInKg >= 1000 )
+            {
+                Console.WriteLine("This height is too small or too high for this calculator");
+            }
+            else if (heightInFeet <= 2 || heightInFeet >= 20)
+            {
+                Console.WriteLine("This height is too small or too high for this calculator");
+            }
+            else if (weightInStones <= 2 || weightInStones >= 100)
+            {
+                Console.WriteLine("This height is too small or too high for this calculator");
+            }
+            else if (weightInPounds <= 5 || weightInPounds >= 1000)
+            {
+                Console.WriteLine("This height is too small or too high for this calculator");
+            }
+        }
+
+        /// <summary>
         /// A simple display of a message to the user about Ethnicity
         /// playing a role in the BMI.
         /// </summary>
-        private void PrintEthnicMessage()
+        public void PrintEthnicMessage()
         {
             Console.WriteLine("\nIf you are Black, Asian or minority ethnic groups, you have a risk");
             Console.WriteLine("Adults 23.0 or more are at increased risk \nAdults 27.5 or more at high risk");

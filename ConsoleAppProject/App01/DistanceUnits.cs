@@ -8,7 +8,7 @@
         NoUnit,
         Feet,
         Metres,
-        Kilometres,
         Miles
+       
     }
 }

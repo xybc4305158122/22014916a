@@ -1,5 +1,5 @@
-﻿/*using ConsoleAppProject.App01;
-using ConsoleAppProject.App02;*/
+﻿using ConsoleAppProject.App01;
+using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
 using ConsoleAppProject.Helpers;
 using System;
@@ -23,15 +23,29 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-            StudentMarks grader = new StudentMarks();
-            grader.Run();
+            Console.WriteLine("\n1. Distance Converter");
+            Console.WriteLine("2. BMI Calculator");
+            Console.WriteLine("3. Student Grades");
+            Console.WriteLine("4. Social Network");
+            Console.WriteLine("5. RPG Game");
+            Console.WriteLine("\nSelect your application > ");
+            string choice = Console.ReadLine();
 
-            /*DistanceConverter converter = new DistanceConverter();
-            converter.Run();
-
-            BMI calculator = new App02.BMI();
-
-            calculator.Run();*/
+            if (choice == "1")
+            {
+                DistanceConverter converter = new DistanceConverter();
+                converter.Run();
+            }
+            else if (choice == "2")
+            {
+                BMI calculator = new App02.BMI();
+                calculator.Run();
+            }
+            else if (choice == "3")
+            {
+               StudentMarks grader = new StudentMarks();
+               grader.Run();
+            }
 
         }
     }
