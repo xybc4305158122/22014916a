@@ -35,10 +35,7 @@ namespace ConsoleAppProject.App03
 
             do
             {
-                InputMarks();
-                DisplayStudentData();
-                CalculateMinMaxAndMean();
-                CalculateGradeProfile();
+                SelectChoice();
 
                 Console.WriteLine("Would you like to restart the program: Yes/No");
                 restart = Console.ReadLine().ToLower();
@@ -49,7 +46,30 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        public void SelectChoice()
+        {
 
+            string [] choices = { "1. Input Marks", "2. Show Grade Profile" };
+
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
+            {
+                InputMarks();
+            }
+            else if (choice == 2)
+            {
+                DisplayStudentData();  
+            }
+
+            Console.WriteLine("Would You like to see the Grade Profile : Yes/No ");
+            string choice2 = Console.ReadLine().ToLower();
+
+            if (choice2 == "yes")
+            {
+                DisplayStudentData();
+            }
+        }
         
         /// <summary>
         /// This method takes in marks inserted by the user for each of 
