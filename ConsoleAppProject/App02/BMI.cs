@@ -69,10 +69,11 @@ namespace ConsoleAppProject.App02
         /// </summary>
         public void DisplayTypeOfUnit()
         {
-            Console.WriteLine("1. Metric Units\n2. Imperial Units\n Please enter your choice >");
-            unitChoice = Console.ReadLine();
+            string[] choices = { "1. Metric Units\n2. Imperial Units\n Please enter your choice >" };
 
-            if (unitChoice == "1")
+            int unitChoice = ConsoleHelper.SelectChoice(choices);
+
+            if (unitChoice == 1)
             {
                 Console.WriteLine("Enter your height in the nearest height in metres ");
                 Console.Write("Enter your height in metres> ");
@@ -87,7 +88,7 @@ namespace ConsoleAppProject.App02
                 CalculateMetricFormula();
                 DisplayBMI(metricBMI);
             }
-            else if (unitChoice == "2")
+            else if (unitChoice == 2)
             {
                 Console.WriteLine("Enter your height in the nearest feet and inches \n ");
                 Console.Write("Enter your height in feet> ");

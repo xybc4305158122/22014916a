@@ -26,7 +26,8 @@ namespace ConsoleAppProject.App03
         public Grades[] Grade;
 
         /// <summary>
-        /// The run method consisting of methods and outputs.
+        /// The run method consisting of methods and outputs. It also has a restart 
+        /// function.
         /// </summary>
         public void Run()
         {
@@ -46,6 +47,9 @@ namespace ConsoleAppProject.App03
             }
         }
 
+        /// <summary>
+        /// The select choice method for the user to select what they want to do
+        /// </summary>
         public void SelectChoice()
         {
 
@@ -174,7 +178,8 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// This method shows the GradeProfile of the
+        /// This method shows the GradeProfile of the of the marks and assigns
+        /// a counter for what each student got.
         /// students.
         /// </summary>
         public void CalculateGradeProfile()
@@ -233,6 +238,12 @@ namespace ConsoleAppProject.App03
             return (GradeCounter * 100) / (Students.Length);
         }
 
+        /// <summary>
+        /// The Display percentage to show the user what percentage of what marks
+        /// the student had gotten.
+        /// </summary>
+        /// <param name="grade"></param>
+        /// <param name="GradeCounter"></param>
         public void DisplayPercentage(string grade, int GradeCounter)
         {
             Console.WriteLine($"The percentage of students with grade {grade} : > " + CalculatePercentage(GradeCounter) + "%"); ;

@@ -23,25 +23,23 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-            Console.WriteLine("\n1. Distance Converter");
-            Console.WriteLine("2. BMI Calculator");
-            Console.WriteLine("3. Student Grades");
-            Console.WriteLine("4. Social Network");
-            Console.WriteLine("5. RPG Game");
-            Console.WriteLine("\nSelect your application > ");
-            string choice = Console.ReadLine();
+            string [] choices = { "\n1. Distance Converter", "2. BMI Calculator", "3. Student Grades",
+            "4. Social Network", "5. RPG Game"
+            };
 
-            if (choice == "1")
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
             {
                 DistanceConverter converter = new DistanceConverter();
                 converter.Run();
             }
-            else if (choice == "2")
+            else if (choice == 2)
             {
                 BMI calculator = new App02.BMI();
                 calculator.Run();
             }
-            else if (choice == "3")
+            else if (choice == 3)
             {
                StudentMarks grader = new StudentMarks();
                grader.Run();
