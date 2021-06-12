@@ -112,25 +112,25 @@ namespace ConsoleAppProject.App03
         public Grades CalculateGrade(int Marks)
         {
            if (Marks >= FAIL && Marks <THIRDCLASS)
-            {
+           {
                 return Grades.F;
-            }
+           }
            else if (Marks >= THIRDCLASS && Marks <LOWERSECONDCLASS)
-            {
+           {
                 return Grades.D;
-            }
+           }
            else if (Marks >= LOWERSECONDCLASS && Marks <UPPERSECONDCLASS)
-            {
+           {
                 return Grades.C;
-            }
+           }
            else if (Marks >= UPPERSECONDCLASS && Marks <FIRSTCLASS)
-            {
+           {
                 return Grades.B;
-            }
+           }
            else
-            {
+           {
                 return Grades.A;
-            }
+           }
         }
 
         /// <summary>
@@ -161,14 +161,14 @@ namespace ConsoleAppProject.App03
             for (int i =0; i<Marks.Length; i++)
             {
                if (min > Marks [i])
-                {
+               {
                     min = Marks[i];
-                }
+               }
 
-                if (max < Marks[i])
-                {
+               if (max < Marks[i])
+               {
                     max = Marks[i];
-                }
+               }
 
                 mean += Marks[i];
                 numCount++;
