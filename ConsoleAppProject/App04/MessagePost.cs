@@ -18,6 +18,7 @@ namespace ConsoleAppProject.App04
 
         private readonly List<String> comments;
 
+        public int ID;
 
         // username of the post's author
         public String Username { get; }
@@ -26,6 +27,8 @@ namespace ConsoleAppProject.App04
         public String Message { get; }
 
         public DateTime Timestamp { get; }
+
+        public DateTime Datestamp;
 
         /// <summary>
         /// Constructor for objects of class MessagePost.
@@ -36,11 +39,13 @@ namespace ConsoleAppProject.App04
         /// <param name="text">
         /// The text of this post.
         /// </param>
-        public MessagePost(String author, String text)
+        public MessagePost(int id, String author, String text)
         {
+            ID = id;
             Username = author;
             Message = text;
             Timestamp = DateTime.Now;
+            Datestamp = DateTime.Now;
 
             likes = 0;
             comments = new List<String>();
@@ -86,9 +91,11 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"    ID: {ID}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Message: {Message}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine($"    Date: {Datestamp}");
             Console.WriteLine();
 
             if (likes > 0)

@@ -26,8 +26,12 @@ namespace ConsoleAppProject.App04
         
         public DateTime Timestamp { get; }
 
+        public DateTime Datestamp;
+
+        public int ID;
+
         private int likes;
-        
+
         private readonly  List<String> comments;
 
         ///<summary>
@@ -42,17 +46,18 @@ namespace ConsoleAppProject.App04
         /// <param name="filename">
         /// The filename of the image in this post.
         /// </param>
-        public PhotoPost(String author, String filename, String caption)
+        public PhotoPost(int id, String author, String filename, String caption)
         {
+            ID = id;
             Username = author;
             this.Filename = filename;
             this.Caption = caption;
             Timestamp = DateTime.Now;
+            Datestamp = DateTime.Now;
 
             likes = 0;
             comments = new List<String>();
         }
-
 
         ///<summary>
         /// Record one more 'Like' indication from a user.
@@ -61,7 +66,6 @@ namespace ConsoleAppProject.App04
         {
             likes++;
         }
-
 
         ///<summary>
         /// Record that a user has withdrawn his/her 'Like' vote.
@@ -74,7 +78,6 @@ namespace ConsoleAppProject.App04
             }
         }
 
-
         ///<summary>
         /// Add a comment to this post.
         ///</summary>
@@ -86,7 +89,6 @@ namespace ConsoleAppProject.App04
             comments.Add(text);
         }
 
-
         ///<summary>
         /// Display the details of this post.
         /// 
@@ -96,10 +98,12 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"    ID: {ID}");
             Console.WriteLine($"    Author: {Username}");
             Console.WriteLine($"    Filename: [{Filename}]");
             Console.WriteLine($"    Caption: {Caption}");
             Console.WriteLine($"    Time Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine($"    Date: {Datestamp}");
             Console.WriteLine();
 
             if (likes > 0)
@@ -120,7 +124,6 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine($"    Comment(s): {comments.Count}  Click here to view.");
             }
         }
-
 
         /// <summary>
         /// Create a string describing a time point in the past in terms 

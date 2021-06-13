@@ -1,6 +1,7 @@
 ﻿using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 using ConsoleAppProject.App03;
+using ConsoleAppProject.App04;
 using ConsoleAppProject.Helpers;
 using System;
 
@@ -23,8 +24,8 @@ namespace ConsoleAppProject
             Console.WriteLine();
             Console.Beep();
 
-            string [] choices = { "\n1. Distance Converter", "2. BMI Calculator", "3. Student Grades",
-            "4. Social Network", "5. RPG Game"
+            string [] choices = {" Distance Converter", " BMI Calculator", " Student Grades",
+            " Social Network", " RPG Game"
             };
 
             int choice = ConsoleHelper.SelectChoice(choices);
@@ -43,6 +44,11 @@ namespace ConsoleAppProject
             {
                StudentMarks grader = new StudentMarks();
                grader.Run();
+            }
+            else if (choice == 4)
+            {
+                SocialNetworkMain social = new SocialNetworkMain();
+                social.Run();
             }
 
         }

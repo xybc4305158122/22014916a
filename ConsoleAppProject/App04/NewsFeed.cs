@@ -73,6 +73,83 @@ namespace ConsoleAppProject.App04
                 Console.WriteLine();   // empty line between posts
             }
         }
+
+        public void FindUser(string user)
+        {
+            foreach (MessagePost message in messages)
+            {
+                if (message.Username == user)
+                {
+                    message.Display();
+                    Console.WriteLine();   // empty line between posts
+                }
+            }    
+
+            foreach (PhotoPost photo in photos)
+            {
+                if (photo.Username == user)
+                {
+                    photo.Display();
+                    Console.WriteLine();   // empty line between posts
+                }
+            }
+        }
+
+        public void FindID(int id)
+        {
+            int counter = 0;
+
+            foreach (MessagePost message in messages)
+            {
+                if (message.ID == id)
+                {
+                    messages.Remove(message);
+                    Console.WriteLine("Your post has been removed ");
+                    return;
+                    counter++;
+                }
+            }
+
+            foreach (PhotoPost photo in photos)
+            {
+                if (photo.ID == id)
+                {
+                    photos.Remove(photo);
+                    Console.WriteLine("Your post has been removed ");
+                    return;
+                    counter++;
+                }
+            }
+
+            if (counter < 1)
+            {
+                Console.WriteLine("No such ID of a post exists ");
+            }
+        }
+
+        public MessagePost FindMessagePost(int id)
+        {
+            foreach (MessagePost message in messages)
+            {
+                if (id == message.ID)
+                {
+                    return message;
+                }
+            }
+            return null;
+        }
+
+        public PhotoPost FindPhotoPost(int id)
+        {
+            foreach (PhotoPost photo in photos)
+            {
+                if (id == photo.ID)
+                {
+                    return photo;
+                }
+            }
+            return null; 
+        }
     }
 
 }
