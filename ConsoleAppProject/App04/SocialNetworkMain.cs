@@ -74,7 +74,7 @@ namespace ConsoleAppProject.App04
             string message = Console.ReadLine();
             Console.WriteLine();
 
-            MessagePost post = new MessagePost(id, name,message);
+            MessagePost post = new MessagePost(name,message);
             news.AddMessagePost(post);
         }
 

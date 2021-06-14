@@ -20,16 +20,14 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
-        private readonly List<MessagePost> messages;
-        private readonly List<PhotoPost> photos;
+        private readonly List<Post> Posts;
 
         ///<summary>
         /// Construct an empty news feed.
         ///</summary>
         public NewsFeed()
         {
-            messages = new List<MessagePost>();
-            photos = new List<PhotoPost>();
+            Posts = new List<Post>();
         }
 
 
@@ -40,7 +38,7 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddMessagePost(MessagePost message)
         {
-            messages.Add(message);
+            Posts.Add(message);
         }
 
         ///<summary>
@@ -50,7 +48,7 @@ namespace ConsoleAppProject.App04
         ///</summary>
         public void AddPhotoPost(PhotoPost photo)
         {
-            photos.Add(photo);
+            Posts.Add(photo);
         }
 
         ///<summary>
@@ -60,61 +58,34 @@ namespace ConsoleAppProject.App04
         public void Display()
         {
             // display all text posts
-            foreach (MessagePost message in messages)
+            foreach (Post Post in Posts)
             {
-                message.Display();
-                Console.WriteLine();   // empty line between posts
-            }
-
-            // display all photos
-            foreach (PhotoPost photo in photos)
-            {
-                photo.Display();
+                Post.Display();
                 Console.WriteLine();   // empty line between posts
             }
         }
 
         public void FindUser(string user)
         {
-            foreach (MessagePost message in messages)
+            foreach (Post Post in Posts)
             {
-                if (message.Username == user)
+                if (Post.Username == user)
                 {
-                    message.Display();
+                    Post.Display();
                     Console.WriteLine();   // empty line between posts
                 }
             }    
-
-            foreach (PhotoPost photo in photos)
-            {
-                if (photo.Username == user)
-                {
-                    photo.Display();
-                    Console.WriteLine();   // empty line between posts
-                }
-            }
         }
 
         public void FindID(int id)
         {
             int counter = 0;
 
-            foreach (MessagePost message in messages)
+            foreach (Post Post in Posts)
             {
-                if (message.ID == id)
+                if (Post.PostID == id)
                 {
-                    messages.Remove(message);
-                    Console.WriteLine("Your post has been removed ");
-                    return;
-                    counter++;
-                }
-            }
-
-            foreach (PhotoPost photo in photos)
-            {
-                if (photo.ID == id)
-                {
-                    photos.Remove(photo);
+                    Posts.Remove(Post);
                     Console.WriteLine("Your post has been removed ");
                     return;
                     counter++;
@@ -127,28 +98,16 @@ namespace ConsoleAppProject.App04
             }
         }
 
-        public MessagePost FindMessagePost(int id)
+        public Post FindPost(int id)
         {
-            foreach (MessagePost message in messages)
+            foreach (Post post in Posts)
             {
-                if (id == message.ID)
+                if (id == post.PostID)
                 {
-                    return message;
+                    return post;
                 }
             }
             return null;
-        }
-
-        public PhotoPost FindPhotoPost(int id)
-        {
-            foreach (PhotoPost photo in photos)
-            {
-                if (id == photo.ID)
-                {
-                    return photo;
-                }
-            }
-            return null; 
         }
     }
 
