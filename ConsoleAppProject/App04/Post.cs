@@ -14,7 +14,7 @@ namespace ConsoleAppProject.App04
 
         public DateTime Datestamp;
 
-        private int Instances = 0;
+        private static int Instances = 0;
 
         private int likes;
 
@@ -22,7 +22,9 @@ namespace ConsoleAppProject.App04
 
         public Post(string author)
         {
-            PostID = Instances++;
+            Instances++;
+
+            PostID = Instances;
             Username = author;
             Timestamp = DateTime.Now;
             Datestamp = DateTime.Now;

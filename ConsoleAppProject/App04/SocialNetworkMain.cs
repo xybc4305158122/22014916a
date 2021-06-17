@@ -91,7 +91,7 @@ namespace ConsoleAppProject.App04
             Console.WriteLine("\nPlease write a caption for your photo ");
             string caption = Console.ReadLine();
 
-            PhotoPost photo = new PhotoPost(id,authorname, filename, caption);
+            PhotoPost photo = new PhotoPost(authorname,filename, caption);
             news.AddPhotoPost(photo);
         }
 
@@ -116,15 +116,10 @@ namespace ConsoleAppProject.App04
             Console.WriteLine("\nSearch post by the ID : ");
             int id = Convert.ToInt32(Console.ReadLine());
 
-            if (news.FindMessagePost(id) != null)
+            if (news.FindPost(id) != null)
             {
-                MessagePost message = news.FindMessagePost(id);
-                MenuChoices(message,null);
-            }
-            else if (news.FindPhotoPost(id) != null)
-            {
-                PhotoPost post = news.FindPhotoPost(id);
-                MenuChoices(null, post);
+                Post post = news.FindPost(id);
+                MenuChoices(post);
             }
             else
             {
@@ -132,51 +127,29 @@ namespace ConsoleAppProject.App04
             }
         }
 
-        public void MenuChoices(MessagePost message, PhotoPost post)
+        public void MenuChoices(Post post)
         {
             Console.WriteLine("\nWhat would you like to do");
-            string[] choices = { "\nLike this post", "Unlike this post", "Comment on this post"};
+            string[] choices = { "Like this post", "Unlike this post", "Comment on this post"};
 
             int choice = ConsoleHelper.SelectChoice(choices);
 
             if (choice == 1)
             {
-                if (message != null)
-                {
-                    message.Like();
-                }
-                else
-                {
-                    post.Like();
-                }
-
+                post.Like();
                 Console.WriteLine("\nYour action has been recorded ");
             }
             else if (choice == 2)
             {
-                if (message != null)
-                {
-                    message.Unlike();
-                }
-                else
-                {
-                    post.Unlike();
-                }
-
+                post.Unlike();
                 Console.WriteLine("\nYour action has been recorded ");
             }
             else if (choice == 3)
             {
                 Console.WriteLine("What comment would you like to add to this post ");
                 string comment = Console.ReadLine();
-                if (message != null)
-                {
-                    message.AddComment(comment);
-                }
-                else
-                {
-                    post.AddComment(comment);
-                }
+
+                post.AddComment(comment);
 
                 Console.WriteLine("\nYour action has been recorded ");
             }

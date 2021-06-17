@@ -67,14 +67,21 @@ namespace ConsoleAppProject.App04
 
         public void FindUser(string user)
         {
+            int counter = 0;
+
             foreach (Post Post in Posts)
             {
                 if (Post.Username == user)
                 {
                     Post.Display();
                     Console.WriteLine();   // empty line between posts
+                    counter++;
                 }
-            }    
+            }
+             if (counter == 0)
+             {
+                Console.WriteLine("\nNo such user exists in the current context ");
+             }
         }
 
         public void FindID(int id)
