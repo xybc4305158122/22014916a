@@ -5,19 +5,9 @@ using System.Collections.Generic;
 namespace ConsoleAppProject.App04
 {
     ///<summary>
-    /// The NewsFeed class stores news posts for the news feed in a social network 
-    /// application.
-    /// 
-    /// Display of the posts is currently simulated by printing the details to the
-    /// terminal. (Later, this should display in a browser.)
-    /// 
-    /// This version does not save the data to disk, and it does not provide any
-    /// search or ordering functions.
-    ///</summary>
-    ///<author>
-    ///  Michael Kölling and David J. Barnes
-    ///  version 0.1
-    ///</author> 
+    /// This is the news feed class for my project of a social network.
+    /// Version 1.0
+    ///<AbdulSalam> 
     public class NewsFeed
     {
         /// <summary>
@@ -33,21 +23,19 @@ namespace ConsoleAppProject.App04
             Posts = new List<Post>();
         }
 
-        ///<summary>
+        /// <summary>
         /// Add a text post to the news feed.
-        /// 
-        /// @param text  The text post to be added.
-        ///</summary>
+        /// </summary>
+        /// <param name="message"></param>
         public void AddMessagePost(MessagePost message)
         {
             Posts.Add(message);
         }
 
-        ///<summary>
+        /// <summary>
         /// Add a photo post to the news feed.
-        /// 
-        /// @param photo  The photo post to be added.
-        ///</summary>
+        /// </summary>
+        /// <param name="photo"></param>
         public void AddPhotoPost(PhotoPost photo)
         {
             Posts.Add(photo);

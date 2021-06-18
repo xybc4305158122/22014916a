@@ -4,8 +4,16 @@ using System.Text;
 
 namespace ConsoleAppProject.App04
 {
+    /// <summary>
+    /// This is the main class of this project where the methods are held.
+    /// Version 1.0
+    /// Abdul Salam
+    /// </summary>
     public class Post
     {
+        /// <summary>
+        /// Global variables and arraylist.
+        /// </summary>
         public int PostID;
 
         public string Username;
@@ -20,6 +28,10 @@ namespace ConsoleAppProject.App04
 
         private List<string> comments;
 
+        /// <summary>
+        /// The constructor for my Post class and objects
+        /// </summary>
+        /// <param name="author"></param>
         public Post(string author)
         {
             Instances++;
@@ -126,6 +138,10 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        /// <summary>
+        /// A method to return the instances
+        /// </summary>
+        /// <returns></returns>
         public int GetNumberOfPosts()
         {
             return Instances;

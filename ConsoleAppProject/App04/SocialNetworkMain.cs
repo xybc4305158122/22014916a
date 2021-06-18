@@ -11,6 +11,9 @@ namespace ConsoleAppProject.App04
         /// </summary>
         public int PostID = 0;
 
+        /// <summary>
+        /// The news feed object.
+        /// </summary>
         NewsFeed news = new NewsFeed();
 
         /// <summary>
