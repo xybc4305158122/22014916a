@@ -30,6 +30,10 @@ namespace ConsoleAppProject.App04
         {
             Message = message;
         }
+        /// <summary>
+        /// This method is abstract and it overides the display method from another
+        /// class.
+        /// </summary>
         public override void Display()
         {
             Console.WriteLine($"    Message: {Message}");

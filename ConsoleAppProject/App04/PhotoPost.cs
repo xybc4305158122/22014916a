@@ -34,6 +34,9 @@ namespace ConsoleAppProject.App04
             this.Caption = caption;
         }
 
+        /// <summary>
+        /// The abstract override display method from a different class.
+        /// </summary>
         public override void Display()
         {
             Console.WriteLine();

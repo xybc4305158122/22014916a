@@ -20,6 +20,9 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
+        /// <summary>
+        /// This is the Posts arraylist.
+        /// </summary>
         private readonly List<Post> Posts;
 
         ///<summary>
@@ -29,7 +32,6 @@ namespace ConsoleAppProject.App04
         {
             Posts = new List<Post>();
         }
-
 
         ///<summary>
         /// Add a text post to the news feed.
@@ -65,6 +67,10 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        /// <summary>
+        /// This function is to find a post by the users name.
+        /// </summary>
+        /// <param name="user"></param>
         public void FindUser(string user)
         {
             int counter = 0;
@@ -84,6 +90,10 @@ namespace ConsoleAppProject.App04
              }
         }
 
+        /// <summary>
+        /// This function will find a post by using the ID.
+        /// </summary>
+        /// <param name="id"></param>
         public void FindID(int id)
         {
             int counter = 0;
@@ -105,6 +115,11 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        /// <summary>
+        /// This function will find a post by the ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Post FindPost(int id)
         {
             foreach (Post post in Posts)

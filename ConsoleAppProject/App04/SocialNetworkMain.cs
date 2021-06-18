@@ -6,14 +6,25 @@ namespace ConsoleAppProject.App04
 {
     class SocialNetworkMain
     {
+        /// <summary>
+        /// My Global variables for my class.
+        /// </summary>
         public int PostID = 0;
 
         NewsFeed news = new NewsFeed();
+
+        /// <summary>
+        /// The run method consisting of other methods.
+        /// </summary>
         public void Run()
         {
             DisplayMenu();
         }
 
+        /// <summary>
+        /// The display man for my class consisting of choices of what to do
+        /// in the social network.
+        /// </summary>
         public void DisplayMenu()
         {
             ConsoleHelper.OutputHeading("Social Network ");
@@ -63,6 +74,10 @@ namespace ConsoleAppProject.App04
             while (exit != 1);
         }
 
+        /// <summary>
+        /// The post message function to add a message to the social 
+        /// network. 
+        /// </summary>
         public void PostMessage()
         {
             int id = PostID++;
@@ -78,6 +93,9 @@ namespace ConsoleAppProject.App04
             news.AddMessagePost(post);
         }
 
+        /// <summary>
+        /// This function is to post a photo to the social network.
+        /// </summary>
         public void PostPhoto()
         {
             int id = PostID++;
@@ -95,6 +113,10 @@ namespace ConsoleAppProject.App04
             news.AddPhotoPost(photo);
         }
 
+        /// <summary>
+        /// This method will find a users posts by entering in the 
+        /// the users name.
+        /// </summary>
         public void FindUserPosts()
         {
             Console.WriteLine("\nWhich users posts would you like to find ");
@@ -103,6 +125,9 @@ namespace ConsoleAppProject.App04
             news.FindUser(user);
         }
 
+        /// <summary>
+        /// This method will remove the post from a social network.
+        /// </summary>
         public void RemovePost()
         {
             Console.WriteLine("\nWhat is the ID of the post you would like to remove ");
@@ -111,6 +136,10 @@ namespace ConsoleAppProject.App04
             news.FindID(choice);
         }
 
+        /// <summary>
+        /// This method will add a like to the certain posts.
+        /// You will need to search the post by the Post ID.
+        /// </summary>
         public void AddLikeComment()
         {
             Console.WriteLine("\nSearch post by the ID : ");
@@ -127,6 +156,10 @@ namespace ConsoleAppProject.App04
             }
         }
 
+        /// <summary>
+        /// Menu Choices of what to do once you have selected the comment option.
+        /// </summary>
+        /// <param name="post"></param>
         public void MenuChoices(Post post)
         {
             Console.WriteLine("\nWhat would you like to do");
